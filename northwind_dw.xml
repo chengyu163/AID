@@ -1,0 +1,62 @@
+<Schema name="northwind_dw">
+  <Cube name="Orders" visible="true" cache="true" enabled="true">
+    <Table name="fact_order">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CUSTOMER_ID" highCardinality="false" name="Customer">
+      <Hierarchy name="Customer Hierarchy" visible="true" hasAll="true" allMemberName="All Customers" primaryKey="CUSTOMER_ID">
+        <Table name="dim_customer">
+        </Table>
+        <Level name="Country" visible="true" column="COUNTRY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="City" visible="true" column="CITY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Company Name" visible="true" column="COMPANY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SHIPPER_ID" highCardinality="false" name="Shipper">
+      <Hierarchy name="Shipper Hierarchy" visible="true" hasAll="true" allMemberName="All Shippers" primaryKey="SHIPPER_ID">
+        <Table name="dim_shipper">
+        </Table>
+        <Level name="Company Name" visible="true" column="COMPANY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SUPPLIER_ID" highCardinality="false" name="Supplier">
+      <Hierarchy name="Supplier Hierarchy" visible="true" hasAll="true" allMemberName="All Suppliers" primaryKey="SUPPLIER_ID">
+        <Table name="dim_supplier">
+        </Table>
+        <Level name="Company Name" visible="true" column="COMPANY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Country" visible="true" column="COUNTRY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="City" visible="true" column="CITY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="TIME_ID" highCardinality="false" name="Time">
+      <Hierarchy name="Time Hierarchy " visible="true" hasAll="true" allMemberName="All Years" primaryKey="TIME_ID">
+        <Table name="dim_time">
+        </Table>
+        <Level name="Year" visible="true" column="YEAR" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Month" visible="true" column="MONTH_NAME" ordinalColumn="MONTH_ID" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="PRODUCT_KEY" highCardinality="false" name="Product">
+      <Hierarchy name="Product Hierarchy" visible="true" hasAll="true" allMemberName="All Products" primaryKey="PRODUCT_KEY">
+        <Table name="dim_product">
+        </Table>
+        <Level name="Product Name" visible="true" column="PRODUCT_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Category Name" visible="true" column="CATEGORY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Sales" column="TOTAL_PRICE" datatype="Numeric" formatString="$ #,###.00" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Quantity" column="QUANTITY" datatype="Integer" formatString="#,###" aggregator="sum" visible="false">
+    </Measure>
+  </Cube>
+</Schema>
