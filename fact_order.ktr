@@ -671,7 +671,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>496</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -772,6 +772,11 @@
         <name>TOTAL_PRICE</name>
         <rename>TOTAL_PRICE</rename>
         <update>Y</update>
+      </value>
+      <value>
+        <name>QUANTITY</name>
+        <rename>Quantity</rename>
+        <update>N</update>
       </value>
     </lookup>
     <attributes/>
